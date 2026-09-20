@@ -1,0 +1,7 @@
+.DS_Store
+*.swp
+*~
+.cursor/
+.env
+.env.*
+!.env.example
