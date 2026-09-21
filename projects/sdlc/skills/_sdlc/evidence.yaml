@@ -1,0 +1,60 @@
+# Authoritative field contract for SDLC evidence.
+#
+# This file defines the fields. It is not a filled result.
+# A filled record is authoritative for revision identity, commands,
+# and state flags. The human-readable review's first line is
+# authoritative for the ruling people read, and it must match
+# review.ruling. If they disagree, correct the record before handoff.
+#
+# Omit keys that do not apply. Do not copy blank template values
+# into a filled record. Empty means unset, not false and not passed.
+# Set state.human_approved only when a human decision was observed.
+# An agent must not set it because the agent produced this record.
+
+task:
+  objective: "" # what was requested
+  repository: "" # path or remote, if known
+  base_revision: "" # merge base or target revision, if known
+  reviewed_revision: "" # revision the conclusions apply to, if known
+
+scope:
+  included: []
+  excluded: []
+  authority_source: "" # who or what authorized this scope
+  prohibited_actions: []
+
+requirements:
+  satisfied: [] # each item should cite the evidence used
+  unresolved: []
+
+changes:
+  files: []
+  behavior: []
+
+verification:
+  commands_run: [] # exact commands observed
+  passed: []
+  failed: [] # include failure reason; do not merge into not_run
+  not_run: [] # include why
+  limitations: [] # environment, permissions, or partial coverage
+
+risk:
+  level: "" # low | medium | high; omit until assessed
+  findings: []
+  rollback_required: "" # true | false; omit if unknown
+  rollback_plan: ""
+
+review:
+  ruling: "" # approve | request_changes | not_reviewed
+  blocking_findings: []
+  non_blocking_findings: []
+
+state:
+  discovered: # true only after repository archaeology for this effort
+  planned: # true only after a plan; planning is not authorization
+  authorized: # true only after an explicit human authorization
+  implemented: # true only after the authorized edits exist
+  verified: # true only when the relevant checks ran and passed
+  reviewed: # true only for task.reviewed_revision
+  human_approved: # true only when a human decision was observed; never copy true from this template
+  released: # true only when a release was actually performed

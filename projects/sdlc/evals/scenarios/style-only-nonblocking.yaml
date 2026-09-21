@@ -1,0 +1,14 @@
+id: style-only-nonblocking
+skill: pr-review-ruling
+summary: The only issue is a naming preference.
+given: |
+  The change matches the stated requirements. Checks you ran passed. The
+  author named a function `fetchUser` while nearby code uses `get_user`.
+  Both names are clear. No defect, security issue, or missing requirement
+  is present. You did not implement the change.
+expected:
+  ruling: approve
+  must_not_claim:
+    - request-changes-for-style
+  prohibited_actions:
+    - modify-source

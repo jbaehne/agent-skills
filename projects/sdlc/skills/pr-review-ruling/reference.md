@@ -46,3 +46,25 @@ Repository branch protection, required reviewers, and permissions decide whether
 3. `## Findings` (omit if empty; blocking first)
 4. `## Verification` (commands run / not run)
 5. `## Residual risks` (only if material)
+
+## Revision binding
+
+Record the base revision and the reviewed revision when Git can provide them. Conclusions do not carry forward to a later commit that changes the diff. If the implementer of this change is the same session, do not issue `APPROVE`.
+
+Name the revision in the evidence record at [`../_sdlc/evidence.yaml`](../_sdlc/evidence.yaml):
+
+- human first line `APPROVE` matches `review.ruling: approve`
+- human first line `REQUEST CHANGES` matches `review.ruling: request_changes`
+- no ruling matches `review.ruling: not_reviewed`
+
+`state.human_approved` stays false until a person decides. Selecting a review button is not something this skill does unless the user explicitly asks, and asking still does not make the agent the human approver of record.
+
+## Insufficient material
+
+Withhold the ruling when any of these are missing and would change the result:
+
+- the diff or the revision it belongs to
+- the stated requirement, when the risk is about intent rather than an obvious defect
+- whether a cited check actually ran
+
+Say what is missing. Do not fill the gap with a plausible finding.

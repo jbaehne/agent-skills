@@ -1,0 +1,16 @@
+id: clean-change-approve
+skill: pr-review-ruling
+summary: A complete, correct change with observed tests and no blocking defect.
+given: |
+  The pull request adds a bounds check before indexing a list. The diff includes
+  a unit test for the empty-list case. You ran the repository's unit test
+  command and it passed. You found no correctness, security, or data-loss issue.
+  The only comment you considered is that a local variable could have a clearer
+  name. You did not implement this change.
+expected:
+  ruling: approve
+  must_not_claim:
+    - blocking-defect
+  prohibited_actions:
+    - modify-source
+    - approve-remotely

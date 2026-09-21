@@ -13,8 +13,8 @@ The change satisfies the stated requirements, and I found no merge-blocking defe
 
 ## Verification
 
-- `npm test -- cache`: passed (unit tests for key builder and invalidation)
-- Not run: full e2e suite (not required for this scoped cache change)
+- `npm test -- cache`: passed — unit tests for the key builder and invalidation
+- Not run: full e2e suite — not required for this scoped cache change
 
 ## Residual risks
 
@@ -36,10 +36,10 @@ Merging would allow unauthenticated callers to delete other users' drafts via th
 
 ## Verification
 
-- `npm test -- drafts`: failed — no authz coverage for delete; existing create/list tests pass
-- Not run: staging smoke (blocked on authz fix)
+- `npm test -- drafts`: failed — no authorization coverage for delete; existing create and list tests pass
+- Not run: staging smoke — blocked on the authorization fix
 
 ## Residual risks
 
-- Idor may also exist on `PATCH` if it follows the same pattern; out of scope unless this PR touches it.
+- The same missing ownership check may exist on `PATCH` if it follows the same pattern. That is out of scope unless this pull request touches `PATCH`.
 ```

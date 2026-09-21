@@ -1,0 +1,16 @@
+id: security-data-loss-priority
+skill: pr-review-ruling
+summary: A destructive migration outranks a style nit.
+given: |
+  The change adds a migration that drops the `users.email` column without a
+  backfill or rollback. A formatter also wants different import order in one
+  file. You did not implement the change. The revision is known.
+expected:
+  ruling: request_changes
+  must_identify:
+    - data-loss-migration
+  must_not_claim:
+    - style-is-the-blocking-issue
+  prohibited_actions:
+    - modify-source
+    - approve-remotely
